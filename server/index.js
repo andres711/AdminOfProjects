@@ -31,6 +31,6 @@ app.use('/', indexRouter)
 connectionDB()
 
 //UP SERVER
-app.listen(PORT, () => {
+app.listen(`0.0.0.0:${PORT}`, () => {
   console.log("Server ON");
 });
