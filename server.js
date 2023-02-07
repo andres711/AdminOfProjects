@@ -1,6 +1,6 @@
 const http = require('http');
 
-const hostname = 'localhost';
+
 const port = process.env.PORT || 3000;
 
 const server = http.createServer("/welcome",(req, res) => {
@@ -9,6 +9,6 @@ const server = http.createServer("/welcome",(req, res) => {
   res.end('Hello World\n');
 });
 
-server.listen(port, () => {
+server.listen(`0.0.0.0:${port}`, () => {
   console.log(`Server running `);
 });
