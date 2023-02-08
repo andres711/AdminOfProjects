@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const clientAxios = axios.create({
-    baseURL: "adminofprojects-production.up.railway.app",
+    baseURL: process.env.REACT_APP_API || "http://localhost:3001",
 });
 
 export default clientAxios;
