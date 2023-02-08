@@ -14,7 +14,7 @@ app.use(express.json({extended:true}))
 app.use(express.urlencoded({ extended: false }))
 app.use(logger('dev'))
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin","https://admin-of-projects-48lagk3ps-andres711.vercel.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin","*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
