@@ -32,5 +32,5 @@ connectionDB()
 
 //UP SERVER
 app.listen(PORT, () => {
-  console.log("Server ON");
+  console.log(`Server ON PORT: ${PORT}`);
 });
