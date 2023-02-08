@@ -13,16 +13,16 @@ app.use(cors());
 app.use(express.json({extended:true}))
 app.use(express.urlencoded({ extended: false }))
 app.use(logger('dev'))
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin",'http://localhost:3000'); // update to match the domain you will make the request from
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin","admin-of-projects.vercel.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
 app.use('/', indexRouter)
 
 
