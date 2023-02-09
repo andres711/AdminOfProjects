@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
 
+import swal from "sweetalert";
+
 import axiosClient from "../../config/axios.js";
 
 import projectContext from "./context";
@@ -15,11 +17,10 @@ import {
 } from "../../Type";
 
 const ProjectState = (props) => {
-
   const initialState = {
     form_project: false,
     projects: [],
-    project_selected:null,
+    project_selected: null,
   };
 
   //Dispatch para ejecutar las acciones
@@ -54,30 +55,34 @@ const ProjectState = (props) => {
         type: CREATE_PROJECT,
         payload: response.data.project,
       });
+      swal({
+        title: `Project created`,
+        icon: "success",
+      });
     } catch (error) {
       console.log(error);
     }
   };
   //
-  const selectProject =  (id) => {
+  const selectProject = (id) => {
     dispatch({
       type: SELECT_PROJECT,
       payload: id,
     });
   };
-  const deleteProject = async(id,creator) => {
+  const deleteProject = async (id, creator) => {
     try {
-      const response = await axiosClient.delete(`/project/delete/${id}`,{paramas:{creator}})
-      console.log(response)
+      const response = await axiosClient.delete(`/project/delete/${id}`, {
+        paramas: { creator },
+      });
+      console.log(response);
       dispatch({
-        type:DELETE_PROJECT,
-        payload:response.data.projects
-      })
-
+        type: DELETE_PROJECT,
+        payload: response.data.projects,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    
   };
 
   return (
