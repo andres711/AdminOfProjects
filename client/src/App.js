@@ -23,7 +23,6 @@ function App() {
                 <Route element={<RequiredAuth/>}>
                   <Route path="/projects" element={<MainPage/>} />
                 </Route>
-                <Route path="/closeSesion" element={<CloseSesion />} />
                 <Route path="*" element={<Navigate to="/login" replace />} />
               </Routes>
             </div>
