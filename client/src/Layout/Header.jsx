@@ -1,29 +1,32 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Context/Auth/context.js";
 
-
-import swal from 'sweetalert';
-
+import swal from "sweetalert";
 
 function Header() {
   const authState = useContext(AuthContext);
-  const { user,closeSesion } = authState;
+  const { user, closeSesion } = authState;
   const navigate = useNavigate();
-  
-  
-  const handlerButtonCloseSession = ()=>{
+
+  const handlerButtonCloseSession = () => {
     swal({
-      title: "Are you sure?",
-      text: "Are you sure close session?",
+      title: "Are you sure close session?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-    navigate("/closeSesion");
+    }).then((willClose) => {
+      if (willClose) {
+        swal({
+          title: "Sesion closed",
+          icon: "success",
+        });
+        closeSesion();
+        navigate("/login");
+      }
+    });
+  };
 
-  }
-  
   return (
     <header className="app-header">
       {user ? (
@@ -31,13 +34,16 @@ function Header() {
           Hello <span>{user.name}</span>
         </p>
       ) : (
-        <p className="nombre-usuario">
-          Hello
-        </p>
+        <p className="nombre-usuario">Hello</p>
       )}
 
       <nav className="nav-principal">
-        <button className="btn btn-blank" onClick={()=>handlerButtonCloseSession()}>Close Session</button>
+        <button
+          className="btn btn-primario"
+          onClick={() => handlerButtonCloseSession()}
+        >
+          Close Session
+        </button>
       </nav>
     </header>
   );
