@@ -1,5 +1,8 @@
 import { useContext,useEffect } from "react";
+
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+import swal from 'sweetalert';
 
 import Task from "./Task";
 import ProjectContext from "../../Context/Project/context.js";
@@ -28,9 +31,25 @@ function ListTasks() {
 
 
   //FUNCTION TO DELETE PROJECT
-  const {_id, creator} = project_selected;
+  const {_id, creator,name} = project_selected;
+
   const onClickDelete = (id, creator) => {
-   deleteProject(id,creator)
+
+    swal({
+      title: `Are you sure delete ${name} project`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then(resOk=>{
+      if(resOk){
+        swal({
+          title: "Project deleted",
+          icon: "success",
+        });
+        deleteProject(id,creator);
+      }
+    })
   };
 
   //RENDERIZADO
