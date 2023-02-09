@@ -5,7 +5,6 @@ import React from "react";
 import LogIn from "./Pages/LogIn.jsx";
 import SignUp from "./Pages/SignUp.jsx";
 import MainPage from "./Pages/Main.jsx";
-import CloseSesion from "./Pages/CloseSesion";
 import RequiredAuth from "./Components/Auth/RequireAuth.jsx";
 
 //CONFIG HEADER
